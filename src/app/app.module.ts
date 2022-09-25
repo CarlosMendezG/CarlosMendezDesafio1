@@ -7,13 +7,17 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { EmpleadosComponent } from './component/empleados/empleados.component';
 import { AccesoComponent } from './component/acceso/acceso.component';
 import { RouterModule } from '@angular/router';
+import { DirectivaBotonDirective } from './Directivas/directiva-boton.directive';
+import { EmpleadosResultadoComponent } from './component/empleados-resultado/empleados-resultado.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     EmpleadosComponent,
-    AccesoComponent
+    AccesoComponent,
+    DirectivaBotonDirective,
+    EmpleadosResultadoComponent
   ],
   imports: [
     BrowserModule,

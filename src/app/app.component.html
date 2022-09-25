@@ -4,8 +4,13 @@
 <div class="row">
   <div class="col-3">
     <app-acceso></app-acceso>
+    <app-empleados-resultado [empleados]="empleadosSeleccionados"></app-empleados-resultado>
+    <div>
+      <p>Empleados seleccionados</p>
+      {{empleadosSeleccionados | json}}
+    </div>
   </div>
   <div class="col-8">
-    <app-empleados></app-empleados>
+    <app-empleados (empleadosSeleccionados)="seleccionarEmpleado(empleadosSeleccionados)"></app-empleados>
   </div>
 </div>

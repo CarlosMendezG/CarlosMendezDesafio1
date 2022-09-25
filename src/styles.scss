@@ -1,0 +1,73 @@
+@import "bootstrapvariables.scss";
+@import "~bootstrap/scss/bootstrap";
+
+
+.material-icons {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+  
+  /* Rules for sizing the icon. */
+  
+  .material-icons.md-18 {
+    font-size: 18px;
+  }
+  
+  .material-icons.md-24 {
+    font-size: 24px;
+  }
+  
+  .material-icons.md-36 {
+    font-size: 36px;
+  }
+  
+  .material-icons.md-48 {
+    font-size: 48px;
+  }
+  
+  .material-icons.md-64 {
+    font-size: 64px;
+  }
+  
+  .material-icons.md-80 {
+    font-size: 80px;
+  }
+  
+  .material-icons.md-128 {
+    font-size: 128px;
+  }
+  
+  .material-icons.md-160 {
+    font-size: 160px;
+  }
+
+  .material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+  }
+  
+  .material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+  }
+  
+  /* Rules for using icons as white on a dark background. */
+  
+  .material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+  }
+  
+  .material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .material-icons.title {
+    font-size: 95px;
+  }
+
+  .nav-link.active .material-icons {
+    color: #4d89b6;
+  }
+
+  .material-badge .material-icons {
+    opacity: 1;
+  }
+  

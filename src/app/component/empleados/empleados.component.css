@@ -1,0 +1,27 @@
+th {    
+    background-color: rgb(167, 167, 167);
+    color: navy;
+}
+
+th.check {
+    width:30px;
+    max-width: 30px;
+}
+
+th.fecha {
+    width: 150px;
+    max-width: 200px;
+}
+
+th.rfc {
+    width: 180px;
+    max-width: 200px;    
+}
+
+td.text-baja {
+    color: red;
+}
+
+btn-success {
+    background-color: navy;
+}
