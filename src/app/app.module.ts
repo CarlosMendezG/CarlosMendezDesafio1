@@ -9,6 +9,10 @@ import { AccesoComponent } from './component/acceso/acceso.component';
 import { RouterModule } from '@angular/router';
 import { DirectivaBotonDirective } from './Directivas/directiva-boton.directive';
 import { EmpleadosResultadoComponent } from './component/empleados-resultado/empleados-resultado.component';
+import { EmpleadosSeleccionarComponent } from './component/empleados-seleccionar/empleados-seleccionar.component';
+import { MenuEmpleadosComponent } from './component/menu-empleados/menu-empleados.component';
+import { EmpleadosListadoComponent } from './component/empleados-listado/empleados-listado.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,11 +21,16 @@ import { EmpleadosResultadoComponent } from './component/empleados-resultado/emp
     EmpleadosComponent,
     AccesoComponent,
     DirectivaBotonDirective,
-    EmpleadosResultadoComponent
+    EmpleadosResultadoComponent,
+    EmpleadosSeleccionarComponent,
+    MenuEmpleadosComponent,
+    EmpleadosListadoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: AppComponent },

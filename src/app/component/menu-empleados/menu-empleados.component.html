@@ -1,0 +1,28 @@
+<div class="mx-2">
+    <div class="col-12  text-left" [ngClass]="menuSeleccionado == 'Empleados' ? 'text-white' : 'text-success'"
+        (click)="seleccionarMenu('Empleados')" [ngStyle]="{'background-color': menuSeleccionado == 'Empleados' ? 'navy': 'white' }" >
+        <i class="material-icons mr-1">
+            person
+        </i>
+        Empleados
+    </div>
+    <div class="col-12  text-left" [ngClass]="menuSeleccionado == 'ListadoEmpleados' ? 'text-white' : 'text-success'"
+         (click)="seleccionarMenu('ListadoEmpleados')"  [ngStyle]="{'background-color': menuSeleccionado == 'ListadoEmpleados' ? 'navy': 'white' }" >
+        <i class="material-icons mr-1">
+            group
+        </i>
+        Listado de empleados
+    </div>
+    <div class="col-12  text-left" [ngClass]="menuSeleccionado == 'SeleccionarEmpleados' ? 'text-white' : 'text-success'"
+         (click)="seleccionarMenu('SeleccionarEmpleados')" [ngStyle]="{'background-color': menuSeleccionado == 'SeleccionarEmpleados' ? 'navy': 'white' }" >
+        <i class="material-icons mr-1">            
+            person_search            
+        </i>
+        Seleccionar Empleados
+    </div>
+</div>
+<div class="my-3">
+    <input class="form-check-input mx-2" type="checkbox" [checked]="mostrarDatos" (change)="mostrarDatos = !mostrarDatos; mostrarDatosDeEmpleados()"
+        id="mostrarDatos">
+    <label class="form-check-label" for="mostrarDatos">Mostrar detalle de empleados</label>
+</div>

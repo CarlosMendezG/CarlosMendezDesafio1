@@ -19,8 +19,8 @@ export class Empleados {
         this.alta = alta;
         this.baja = baja;
         this.seleccionado = activo;
-        this.esBaja = !!this.baja && fechaVerificación.getDate() > this.baja.getDate();
-        this.esActivo = this.alta.getDate() <= fechaVerificación.getDate() && !this.baja;
+        this.esBaja = this.baja != undefined && fechaVerificación.getTime() > this.baja.getTime();
+        this.esActivo = this.alta.getTime() <= fechaVerificación.getTime() && !this.baja;
     }
 
     public id: number = 0;
@@ -34,7 +34,7 @@ export class Empleados {
 
     public activo(fechaVerificación: Date | undefined): boolean {
         if (!fechaVerificación) fechaVerificación = new Date();
-        return this.alta.getDate() <= fechaVerificación.getDate() && (!this.baja || fechaVerificación.getDate() > this.baja.getDate());
+        return this.alta.getTime() <= fechaVerificación.getTime() && (!this.baja || fechaVerificación.getTime() > this.baja.getTime());
     }
 
 }

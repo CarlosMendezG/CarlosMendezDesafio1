@@ -1,86 +1,74 @@
-<div>      
-  <table class="table table-striped table-hover">      
-    <tr class="thead-light">        
-        <th class="check">
-          <input class="form-check-input" type="checkbox" [checked]="todosEmpleados" (change)="todosEmpleados = !todosEmpleados; seleccionarTodo()"
-            id="checkTodos">
-        </th>
-        <th style="width:150px; max-width: 150px;">
-          <label class="form-check-label" for="checkTodos">
-            <small>{{ todosEmpleados ? 'Quitar todos' : 'Seleccionar Todos' }}</small>
-          </label>
-        </th>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th class="rfc" >RFC</th>
-        <th class="fecha">Alta</th>
-        <th class="fecha">Baja</th>        
-    </tr>      
-    <tbody>
-      <ng-container *ngFor="let empleado of empleados">
-        <tr *ngIf="sinBajas ? !empleado.esBaja : soloBajas ? empleado.esBaja : true">
-          <td>
-            <input class="form-check-input" type="checkbox" [checked]="empleado.seleccionado" (change)="empleado.seleccionado = !empleado.seleccionado"
-              id="seleccionarEmpleado">
-            <label class="form-check-label" for="seleccionarEmpleado">
-            </label>              
-          </td>
-          <td><small>{{ empleado.seleccionado ? 'Seleccionado' : 'No seleccionado' }}</small></td>
-          <td><a href="#" target="_blank">{{empleado.id}}</a></td>            
-          <td>{{empleado.nombre}}</td>
-          <td>{{empleado.rfc}}</td>            
-          <td>{{empleado.alta | date:'dd MMMM yyyy' | titlecase}}</td>
-          <td>{{ empleado.esBaja ? (empleado.baja | date: 'mediumDate' | titlecase) : '--' }}</td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
-  <div class="row">
-    <div class="col text-end">      
-        <button class="btn btn-success shadow-sm" (click)="cargarTodosEmpleados()">
-          <div class="d-flex flex-row align-items-center text-navy">
-              <i class="material-icons mr-1">
-                sync_alt
-              </i>
-              <b class="d-none d-lg-inline-block ml-2">Cargar todos los empleados</b>
-          </div>
-        </button>
-        <button class="btn btn-outline-success shadow-sm" (click)="noMostrarBajas()">
-          <div class="d-flex flex-row align-items-center text-navy">
-              <i class="material-icons">
-                  subdirectory_arrow_left
-              </i>
-              <b class="d-none d-lg-inline-block ml-2">No mostrar bajas</b>
-          </div>
-        </button>
-        <button class="btn btn-outline-success shadow-sm" (click)="soloMostrarBajas()">
-          <div class="d-flex flex-row align-items-center text-navy">
-              <i class="material-icons">
-                south_east 
-              </i>
-              <b class="d-none d-lg-inline-block ml-2">Solo empleados dados de baja</b>
-          </div>
-        </button>
-        <button class="btn btn-outline-success shadow-sm" (click)="soloSeleccionados()">
-          <div class="d-flex flex-row align-items-center text-navy">
-              <i class="material-icons">
-                filter_alt
-              </i>
-              <b class="d-none d-lg-inline-block ml-2">Solo mostrar seleccionados</b>
-          </div>
-        </button>
+    <div class="row">
+        <h1>Empleados</h1>
     </div>
-  </div>
-  <div class="row">
-    <div class="col text-end">
-      <button class="btn btn-success shadow-sm" (click)="seleccionarEmpleados()">
-        <div class="d-flex flex-row align-items-center text-navy">
-            <i class="material-icons mr-1">
-              cloud_upload
-            </i>
-            <b class="d-none d-lg-inline-block ml-2"> Aplicar cambios </b>
+    <form [formGroup]="formularioReactivo" (ngSubmit)="submitForm()">
+        <div class="row mb-1">
+            <div class="col-2">
+                <label for="id">Id:</label>
+            </div>
+            <div class="col-10">
+                <input type="text" formControlName="id" [readonly]="true">
+            </div>
         </div>
-      </button>
-    </div>
-  </div>
-</div>
+        <div class="row mb-1">
+            <div class="col-2">
+                <label for="nombre">Nombre:</label>
+            </div>
+            <div class="col-10">
+                <input type="text" formControlName="nombre" [readonly]="!editando">
+            </div>
+            <div *ngIf="!faltaLongitud('nombre') && esRequerido('nombre')">
+                <small class="text-primary">* el campo es requerido</small>
+            </div>
+            <div *ngIf="faltaLongitud('nombre')">
+                <small class="text-primary">* El nombre debe tener una longitud mínimo de 5</small>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-2">
+                <label for="rfc">RFC:</label>
+            </div>
+            <div class="col-10">
+                <input type="text" formControlName="rfc" [readonly]="!editando">
+            </div>
+            <div *ngIf="!patronCorrecto('rfc') && !faltaLongitud('rfc') && esRequerido('rfc')">
+                <small class="text-primary">* el campo es requerido</small>
+            </div>
+            <div *ngIf="!patronCorrecto('rfc') && faltaLongitud('rfc')">
+                <small class="text-primary">* El RFC debe tener una longitud mínimo de 13</small>
+            </div>
+            <div *ngIf="patronCorrecto('rfc')">
+                <small class="text-primary">* El RFC no tiene el patrón correcto</small>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-2">
+                <label for="alta">Alta:</label>
+            </div>
+            <div class="col-10">
+                <input type="date" formControlName="alta" [readonly]="!editando">
+            </div>
+            <div *ngIf="esRequerido('alta')">
+                <small class="text-primary">* el campo es requerido</small>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-2">
+                <label for="baja">Baja:</label>
+            </div>
+            <div class="col-10">
+                <input type="date" formControlName="baja" [readonly]="!editando">
+            </div>
+        </div>
+                    
+        <div class="row mt-3">
+            <div class="col-8" *ngIf="!editando">
+                <button class="btn btn-success" (click)="editando = true">Editar datos</button>
+                <button class="btn btn-success" (click)="agregarEmpleado()">Agregar empleado</button>
+            </div>
+            <div class="col-8" *ngIf="editando">
+                <button class="btn btn-primary" (click)="cargarDatosOriginales()">Cancelar</button>            
+                <button class="btn btn-success" type="submit" [disabled]="!formularioReactivo.valid">Guardar datos</button>
+            </div>
+        </div>
+    </form>    
