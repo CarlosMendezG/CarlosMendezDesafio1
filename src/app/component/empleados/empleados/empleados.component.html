@@ -38,7 +38,9 @@
                 <small class="text-primary">* El RFC debe tener una longitud mínimo de 13</small>
             </div>
             <div *ngIf="patronCorrecto('rfc')">
-                <small class="text-primary">* El RFC no tiene el patrón correcto</small>
+                <small class="text-primary">* El RFC no tiene el patrón correcto, el formato debe ser 4 letras, año, mes y día de nacimiento (en 2 caracteres cada uno), y 3 caracteres para homoclave</small>
+                <br>
+                <img src="../../../assets/imagenes/rfc.jpg" alt="RFC" width="500" height="356">
             </div>
         </div>
         <div class="row mb-1">

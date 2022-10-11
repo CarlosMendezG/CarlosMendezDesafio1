@@ -10,18 +10,16 @@ export class MenuEmpleadosComponent implements OnInit {
   constructor() { }
 
   @Input()
-  public menuSeleccionado: string = "ListadoEmpleados";
+  public menuSeleccionado: string = "ListadoMatEmpleados";
   @Output()
   public menuEmpleadosSeleccionado = new EventEmitter<string>();
   seleccionarMenu(nuevaSelección: string) {
     if (this.menuSeleccionado == nuevaSelección) return;
     switch (nuevaSelección) {
       case 'Empleados':
-        this.menuSeleccionado = nuevaSelección;
-        break;
+      case 'EmpleadosCards':
+      case 'ListadoMatEmpleados':
       case 'ListadoEmpleados':
-        this.menuSeleccionado = nuevaSelección;
-        break;
       case 'SeleccionarEmpleados':
         this.menuSeleccionado = nuevaSelección;
         break;

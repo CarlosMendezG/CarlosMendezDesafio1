@@ -13,8 +13,8 @@
                     <td><a (click)="editarEmpleado(empleado.id)">{{empleado.id}}</a></td>            
                     <td>{{empleado.nombre}}</td>
                     <td>{{empleado.rfc}}</td>            
-                    <td>{{empleado.alta | date:'dd MMMM yyyy' | titlecase}}</td>
-                    <td>{{ empleado.esBaja ? (empleado.baja | date: 'mediumDate' | titlecase) : '--' }}</td>
+                    <td>{{ empleado.alta | fecha: 'm' }}</td>
+                    <td [ngClass]="{'baja': empleado.esBaja}"> {{ empleado.baja | fecha: 'm' }} </td>
                 </tr>
             </ng-container>
         </tbody>

@@ -1,0 +1,23 @@
+<div class="row">
+    <mat-form-field>
+        <mat-label>Filtrar:</mat-label>
+        <input matInput type="text" placeholder="Buscar..." [(ngModel)]="filtro">
+    </mat-form-field>
+    <div *ngFor="let empleado of empleados | filtroEmpleados: filtro" class="col-md-4 p-2">
+        <mat-card>
+            <mat-card-title>{{empleado.nombre}}</mat-card-title>
+            <mat-card-subtitle>RFC: {{empleado.rfc}}</mat-card-subtitle>            
+            <mat-card-content>
+                <img mat-card-image src="{{empleado.imagen}}" alt="foto">
+                <br>
+                Alta: {{ empleado.alta | date:'dd MMMM yyyy' | titlecase }}
+                <br>
+                <span [ngClass]="{'baja': empleado.esBaja}"> Baja: {{ empleado.esBaja ? (empleado.baja | date: 'mediumDate' | titlecase) : '--' }}</span>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button class="px-2" mat-flat-button color="primary" (click)="editarEmpleado(empleado.id)">Editar</button>
+                <button class="px-2" mat-flat-button color="warn" (click)="eliminarEmpleadoClick(empleado.id)">Eliminar</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

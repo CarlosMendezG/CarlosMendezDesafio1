@@ -9,7 +9,8 @@ export class Empleados {
         rfc: string,
         alta: Date,
         baja: Date | undefined,
-        activo: boolean
+        activo: boolean,
+        imagen: string
     ) {
         let fechaVerificación: Date = new Date();
 
@@ -21,6 +22,7 @@ export class Empleados {
         this.seleccionado = activo;
         this.esBaja = this.baja != undefined && fechaVerificación.getTime() > this.baja.getTime();
         this.esActivo = this.alta.getTime() <= fechaVerificación.getTime() && !this.baja;
+        this.imagen = `../../../assets/imagenes/${imagen}.jpg`;
     }
 
     public id: number = 0;
@@ -31,6 +33,7 @@ export class Empleados {
     public seleccionado: boolean = true;
     public esActivo: boolean = true;
     public esBaja: boolean = false;
+    public imagen: string;
 
     public activo(fechaVerificación: Date | undefined): boolean {
         if (!fechaVerificación) fechaVerificación = new Date();

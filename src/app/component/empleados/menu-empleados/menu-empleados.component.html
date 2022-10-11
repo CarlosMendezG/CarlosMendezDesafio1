@@ -4,7 +4,21 @@
         <i class="material-icons mr-1">
             person
         </i>
-        Empleados
+        Empleados Edición
+    </div>
+    <div class="col-12  text-left" [ngClass]="menuSeleccionado == 'EmpleadosCards' ? 'text-white' : 'text-success'"
+        (click)="seleccionarMenu('EmpleadosCards')" [ngStyle]="{'background-color': menuSeleccionado == 'EmpleadosCards' ? 'navy': 'white' }" >
+        <i class="material-icons mr-1">
+            person
+        </i>
+        Empleados Cards
+    </div>
+    <div class="col-12  text-left" [ngClass]="menuSeleccionado == 'ListadoMatEmpleados' ? 'text-white' : 'text-success'"
+         (click)="seleccionarMenu('ListadoMatEmpleados')"  [ngStyle]="{'background-color': menuSeleccionado == 'ListadoMatEmpleados' ? 'navy': 'white' }" >
+        <i class="material-icons mr-1">
+            group
+        </i>
+        Listado de empleados (material)
     </div>
     <div class="col-12  text-left" [ngClass]="menuSeleccionado == 'ListadoEmpleados' ? 'text-white' : 'text-success'"
          (click)="seleccionarMenu('ListadoEmpleados')"  [ngStyle]="{'background-color': menuSeleccionado == 'ListadoEmpleados' ? 'navy': 'white' }" >
@@ -12,7 +26,7 @@
             group
         </i>
         Listado de empleados
-    </div>
+    </div>    
     <div class="col-12  text-left" [ngClass]="menuSeleccionado == 'SeleccionarEmpleados' ? 'text-white' : 'text-success'"
          (click)="seleccionarMenu('SeleccionarEmpleados')" [ngStyle]="{'background-color': menuSeleccionado == 'SeleccionarEmpleados' ? 'navy': 'white' }" >
         <i class="material-icons mr-1">            

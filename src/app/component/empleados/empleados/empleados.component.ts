@@ -35,11 +35,42 @@ export class EmpleadosComponent implements OnInit {
 
   submitForm(): void {
     console.log(this.formularioReactivo.value);
-    if (!this.formularioReactivo.get('id')?.value) {
-      this.formularioReactivo.setValue({ 'id': 0 });
-    }
+    if (!this.formularioReactivo) return;
+    // if (!this.formularioReactivo.get('id')?.value) {
+    //   this.formularioReactivo.setValue({ 'id': 0 });
+    // }
+    if (!this.empleado) this.empleado = new Empleados(0, '', '', new Date(), undefined, true, "");
+    this.empleado.nombre = this.formularioReactivo.get('nombre')?.value;
+    this.empleado.rfc = this.formularioReactivo.get('rfc')?.value;
+    this.empleado.alta = this.getFechaT(this.formularioReactivo.get('alta')?.value);
+    this.empleado.baja = this.getFechaTu(this.formularioReactivo.get('baja')?.value);
+    this.empleadosModificado.emit(this.empleado);
+    this.editando = false;
+  }
 
-    this.empleadosModificado.emit(this.formularioReactivo.value);
+  getFechaT(fecha: string): Date {
+    let año: number = parseInt(fecha.substring(0, 4));
+    let mes: number = parseInt(fecha.substring(5, 7));
+    let dia: number = parseInt(fecha.substring(8, 10));
+    if (fecha.length < 12) return new Date(año, mes - 1, dia);
+
+    let hora: number = parseInt(fecha.substring(11, 13));
+    let minutos: number = parseInt(fecha.substring(14, 16));
+    let segundos: number = parseInt(fecha.substring(17, 18));
+    return new Date(año, mes - 1, dia, hora, minutos, segundos);
+  }
+
+  getFechaTu(fecha: string | undefined): Date | undefined {
+    if (!fecha) return undefined;
+    let año: number = parseInt(fecha.substring(0, 4));
+    let mes: number = parseInt(fecha.substring(5, 7));
+    let dia: number = parseInt(fecha.substring(8, 10));
+    if (fecha.length < 12) return new Date(año, mes - 1, dia);
+
+    let hora: number = parseInt(fecha.substring(11, 13));
+    let minutos: number = parseInt(fecha.substring(14, 16));
+    let segundos: number = parseInt(fecha.substring(17, 18));
+    return new Date(año, mes - 1, dia, hora, minutos, segundos);
   }
 
   esValido(campo: string): boolean {
@@ -68,7 +99,7 @@ export class EmpleadosComponent implements OnInit {
 
   agregarEmpleado() {
     this.formularioReactivo.reset();
-    this.empleado = new Empleados(0, '', '', new Date(), undefined, true);
+    this.empleado = new Empleados(0, '', '', new Date(), undefined, true, "");
     this.formularioReactivo.patchValue({
       id: this.empleado.id,
       nombre: this.empleado.nombre,
@@ -83,7 +114,7 @@ export class EmpleadosComponent implements OnInit {
     this.formularioReactivo.reset();
     this.empleado = this.empleadoOrigen;
     if (!this.empleado) {
-      this.empleado = new Empleados(0, '', '', new Date(), undefined, true);
+      this.empleado = new Empleados(0, '', '', new Date(), undefined, true, "");
     }
     this.formularioReactivo.patchValue({
       id: this.empleado.id,
