@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Empleados } from 'src/app/models/empleados';
+import { EmpleadosService } from 'src/app/services/empleados.service';
 
 @Component({
   selector: 'app-empleados-resultado',
@@ -8,7 +10,9 @@ import { Empleados } from 'src/app/models/empleados';
 })
 export class EmpleadosResultadoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private empleadosService: EmpleadosService
+  ) { }
 
   public _empleados: Empleados[] = [];
 
@@ -20,8 +24,10 @@ export class EmpleadosResultadoComponent implements OnInit {
     return this._empleados;
   }
 
+  public empleados$!: Observable<Empleados[]>;
 
   ngOnInit(): void {
-  }
 
+    this.empleados$ = this.empleadosService.obtenerEmpleadosObservable();
+  }
 }

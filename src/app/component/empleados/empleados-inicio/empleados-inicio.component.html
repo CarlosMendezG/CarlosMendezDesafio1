@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-3">
+        <app-menu-empleados [menuSeleccionado]="menuSeleccionadoEmpleados" (menuEmpleadosSeleccionado)="cambioMenuEmpleadosSeleccionado($event)"
+        [mostrarDatos]="mostrarDatosEmpleados" (mostrarDatosEmpleados)="cambioMostrarDatosEmpleados($event)"></app-menu-empleados>    
+        <div class="p-1" *ngIf="mostrarDatosEmpleados">
+        <app-empleados-resultado [empleados]="empleadosSeleccionados"></app-empleados-resultado>      
+        <hr>
+        <b py-3>Empleados</b>
+        <small>{{empleados | json }}</small>
+        <hr>
+        <b py-2>Empleados seleccionados</b>
+        <small>{{empleadosSeleccionados | json}}</small>
+        </div>
+    </div>
+    <div class="col-9" *ngIf="menuSeleccionadoEmpleados == 'Empleados'">
+        <app-empleados [empleadoOrigen]="empleado" (empleadosModificado)="empleadosModificado($event)"></app-empleados>
+    </div>    
+    <div class="col-9" *ngIf="menuSeleccionadoEmpleados == 'EmpleadosCards'">
+        <app-empleados-cards [empleadosOrigen]="empleados" (empleadoEditar)="editarEmpleado($event)" (eliminarEmpleado)="eliminarEmpleado($event)"></app-empleados-cards>
+    </div>
+    <div class="col-9" *ngIf="menuSeleccionadoEmpleados == 'ListadoEmpleados'">
+        <app-empleados-listado [empleadosOrigen]="empleados" (empleadoEditar)="editarEmpleado($event)"></app-empleados-listado>
+    </div>
+    <div class="col-9" *ngIf="menuSeleccionadoEmpleados == 'ListadoMatEmpleados'">
+        <app-empleados-mat-listado (empleadoEditar)="editarEmpleado($event)"></app-empleados-mat-listado> 
+        <!-- [empleadosOrigen]="empleados"  (eliminarEmpleado)="eliminarEmpleado($event)" -->
+    </div>
+    <div class="col-9" *ngIf="menuSeleccionadoEmpleados == 'SeleccionarEmpleados'">
+        <app-empleados-seleccionar [empleadosOrigen]="empleados" (empleadosSeleccionados)="seleccionarEmpleado($event)" 
+        (empleadoEditar)="editarEmpleado($event)"></app-empleados-seleccionar>
+    </div>
+</div>

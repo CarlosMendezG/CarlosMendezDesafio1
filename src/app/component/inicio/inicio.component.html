@@ -1,0 +1,7 @@
+<div class="text-center mt-4">
+    <h2><b>Bienvenido {{usuario.nombre}} !!!</b></h2>
+    <small>Inicio de sesión	: {{ usuario.logIn | date:'dd MMMM yyyy HH:mm' | titlecase }}</small>
+    <br>
+    <b *ngIf="usuario.esAdmin">Permisos de administrador</b>
+</div>
+<img class="img-center" src="../../../assets/imagenes/emprersa.jpg" alt="Empresa" width="500" height="237">

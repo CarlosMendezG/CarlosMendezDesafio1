@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-3">
+        <app-empleados-rxjs-menu [menuSeleccionado]="menuSeleccionadoEmpleados" (menuEmpleadosSeleccionado)="cambioMenuEmpleadosSeleccionado($event)"
+            (mostrarDatosEmpleados)="cambioMostrarDatosEmpleados($event)"></app-empleados-rxjs-menu>    
+        <div class="p-1" *ngIf="mostrarDatosEmpleados">        
+            <b class="px-2">Empleados sincrónica</b>
+            <small>{{empleados | json }}</small>
+            <hr>
+            <b class="px-2">Empleados observable</b>
+            <small >{{empleados$ | async | json}}</small>
+        </div>
+    </div>
+    <div class="col-9" *ngIf="menuSeleccionadoEmpleados == 'Empleados'">
+        <app-empleados-rxjs></app-empleados-rxjs>
+    </div>    
+    <div class="col-9" *ngIf="menuSeleccionadoEmpleados == 'EmpleadosCards'">
+        <app-empleados-rxjs-cards (empleadoEditar)="editarEmpleado($event)"></app-empleados-rxjs-cards>
+    </div>
+    <div class="col-9" *ngIf="menuSeleccionadoEmpleados == 'ListadoMatEmpleados'">
+        <app-empleados-rxjs-listado (empleadoEditar)="editarEmpleado($event)"></app-empleados-rxjs-listado>
+    </div>
+</div>
+

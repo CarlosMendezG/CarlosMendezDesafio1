@@ -17,6 +17,7 @@ export class MenuEmpleadosComponent implements OnInit {
     if (this.menuSeleccionado == nuevaSelección) return;
     switch (nuevaSelección) {
       case 'Empleados':
+      case 'EmpleadosInputOutput':
       case 'EmpleadosCards':
       case 'ListadoMatEmpleados':
       case 'ListadoEmpleados':
